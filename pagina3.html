@@ -5,16 +5,204 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Contacto</title>
 
-        <link rel="style" href="style.css">
+        <link rel="stylesheet" href="style.css">
 
 </head>
-<body>
+<body id="cuerpo">
     
 
 
 
+<div id="estilo">
 
-<script src="java.js"></script>
+<form id="formulario-contacto">
+    
+  
+    <h1 id="h1">Datos del Usuario:  </h1><br><br>
+
+
+     <div class="campo-grupo">
+<label for="Nombre">Nombre y Apellido: </label><br>
+<input type="text" id="Nombre" name="nombre"   required title="debe tener de 10 a 20 caracteres"><br><br><br>
+</div>
+
+<!-- o puedo usar pattern="[0-9\-]{7,20}" pero prefiero hacerlo con javascript -->
+
+
+ <div class="campo-grupo">
+
+<label for="Gmail">Correo electronico: </label><br>
+<input type="email" id="Gmail" name="email" required title="requiere este campo obligatoriamente"><br><br><br>
+
+<!--puedo usar /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/ pero prefiero javascript-->
+
+
+</div>
+
+ 
+
+  <div class="campo-grupo">
+<label for="Contraseña">Contraseña: </label><br>
+<input type="password" id="Contraseña" name="contraseña"   required  title="Debe tener mas de 8 caracteres"><br><br><br>
+
+
+<!--puedo usar pattern="[A-Za-z0-9\s]{9,}" pero prefiero javascript-->
+
+</div>
+
+<div class="campo-grupo">
+  <label for="Confirmar">Confirmar contraseña:</label>
+  <input type="password" id="Confirmar" name="Confirmar" required
+         title="Debe coincidir con la contraseña ingresada"><br><br><br>
+</div>
+
+<div class="campo-grupo">
+<label for="Telefono">Telefono: </label><br>
+<input type="tel" id="Telefono" name="Telefono" placeholder=" "  >
+
+<!--puedo usar pattern="[0-9\-]{7,15}" pero prefiero javascript-->
+
+<br><br><br>
+
+ 
+</div>
+
+
+
+
+
+
+
+<div id="botones"><br>
+<button type="submit" >  Enviar </button>
+  
+
+</div>
+
+
+
+
+ </form>
+<div id="resultado"></div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+<script>
+    document.getElementById("formulario-contacto").addEventListener("submit", function(x) {
+      x.preventDefault();
+
+      const Nombre = document.getElementById("Nombre").value.trim();
+      const Gmail = document.getElementById("Gmail").value.trim();
+      const Telefono = document.getElementById("Telefono").value.trim();
+      const Contraseña = document.getElementById("Contraseña").value.trim();
+      const Confirmar = document.getElementById("Confirmar").value.trim();
+      const errores = [];
+
+      if (Nombre.length === 0 || Nombre.length > 20) {
+        errores.push("el nombre es obligatorio y debe tener menos de 20 letras");
+      }
+
+      const GmailScript = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
+      if (!GmailScript.test(Gmail)) {
+        errores.push("el correo electrónico no es válido ");
+      }
+
+      const TelefonoScript = /^[0-9\-]{7,15}$/;
+      if (!TelefonoScript.test(Telefono)) {
+        errores.push("el teléfono debe contener entre 7 y 15 dígitos ");
+      }
+
+      const ContraseñaScript = /^[A-Za-z0-9\s]{9,}$/;
+      if (!ContraseñaScript.test(Contraseña)) {
+        errores.push("la contraseña debe tener al menos 9 caracteres");
+      }
+
+        if (Contraseña !== Confirmar) {
+     errores.push("las contraseñas no son iguales");
+}
+
+
+      const Resultados = document.getElementById("resultado");
+      Resultados.innerHTML = "";
+
+        
+
+
+
+      if (errores.length > 0) {
+        for (let i = 0; i < errores.length; i++) {
+          const p = document.createElement("p");
+          p.textContent = errores[i];
+          p.style.color = "red";
+          Resultados.appendChild(p);
+        }
+      } else {
+
+
+
+
+        const datos = document.createElement("div");
+        datos.innerHTML = `
+          
+          <p><strong>Nombre:</strong> ${Nombre}</p>
+          <p><strong>Email:</strong> ${Gmail}</p>
+          <p><strong>Teléfono:</strong> ${Telefono}</p>
+          <p><strong>Contraseña:</strong> ${Contraseña}</p>
+          <p><strong>Confirmacion:</strong> ${Confirmar}</p>
+        `;  
+
+         datos.classList.add("correcto");
+         Resultados.appendChild(datos);
+
+      }
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
