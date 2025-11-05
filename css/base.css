@@ -1,0 +1,17 @@
+
+:root{
+  --primario: #2a6f97;
+  --secundario: #f4a261;
+  --fondo: #31679c;
+  --texto: #423a3a;
+  --esp: 16px;
+  --radius: 8px;
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+* { box-sizing: border-box; }
+html,body { margin:0; padding:0; background:var(--fondo); color:var(--texto); }
+img { max-width:100%; display:block; }
+a { color: inherit; }
+button { cursor:pointer; font-family: inherit; }
+
