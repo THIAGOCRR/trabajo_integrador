@@ -32,7 +32,8 @@
  <div class="campo-grupo">
 
 <label for="Gmail">Correo electronico: </label><br>
-<input type="email" id="Gmail" name="email" required title="requiere este campo obligatoriamente"><br><br><br>
+<input type="text" id="Gmail" name="email" required title="requiere este campo obligatoriamente"><br> <br> <br>
+
 
 <!--puedo usar /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/ pero prefiero javascript-->
 
@@ -140,13 +141,14 @@
 
 
       if (errores.length > 0) {
-        for (let i = 0; i < errores.length; i++) {
-          const p = document.createElement("p");
-          p.textContent = errores[i];
-          p.style.color = "red";
-          Resultados.appendChild(p);
-        }
-      } else {
+  for (let i = 0; i < errores.length; i++) {
+    const p = document.createElement("p");
+    p.textContent = errores[i];
+    p.classList.add("errores");
+    Resultados.appendChild(p);
+  }
+}
+       else {
 
 
 
